@@ -11855,10 +11855,10 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Minimum price of the data</span>
-<span class="n">minimum_price</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
+<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Maximum price of the data</span>
-<span class="n">maximum_price</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
+<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Mean price of the data</span>
 <span class="n">mean_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
@@ -12132,7 +12132,7 @@ Increase in RM - An increase in number of rooms of a house would lead to an incr
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Answer: The benefit of having a test set is that new data that is unseen by the algorithm is available. Testing and calulating performance of the model on this test set is a fair and correct evaluation of the model as we want our algorithm to generalize to new examples.</p>
+<p>Answer: The benefit of having a test set is that new data that is unseen by the algorithm is available. Testing and calculating performance of the model on this test set is a fair and correct evaluation of the model as we want our algorithm to generalize to new examples.</p>
 
 </div>
 </div>
@@ -13209,6 +13209,8 @@ iwAAAABJRU5ErkJggg==
 <p>Answer:
 Graph 4: Max_depth= 10</p>
 <p>This is a classic example of overfitting. The alogorithm is very sensitive to the data. If more training points are added the training score will decrease, but the algorithm will generalise better. The test scores will increase and the gap between the training and testing score will decrease. The graph will look more like that of model 2 (max_depth=3) And this is why adding more training examples will fix this high variance problem.</p>
+<p>And so having more training points will definitely benefit this model. The test curve has stabilised, but will show steady increase as new examples are added and the gap between training testing curves will decrease. But, after a sometime even adding more examples will not help as much.
+With that being said, one also has to consider the costs in terms of money, time required to collect more data. Although, the high variance of the model can be fixed by adding more examples, it is not the only solution and definitely not the cheap solution. In fact changing the max_depth should be considered.</p>
 
 </div>
 </div>
@@ -13734,6 +13736,10 @@ SUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Answer: The k-fold cross validation is a technique in which data is split into k different partitions and the a single partition is used as the validation set and all others as training. This is repeated for all k partitions and this way the algorithm is trained and tested on all of the data.</p>
+<p>The final accuracy is calculated by taking average of the accuracies at each iteration. A simple train/test split can also be used with grid search but its evaluation can have a high variance. The evaluation may depend heavily on which data points end up in the training set and which end up in the test set.
+Converesely, the advantage of k-fold cross validation method is that it matters less how the data gets divided. Every data point gets to be in a test set exactly once, and gets to be in a training set k-1 times. The variance of the resulting estimate is reduced as it is averaged over.
+So this makes the model more robust and as it had been tested k times.</p>
+<p>And so using grid search with k-fold validation, will ensure that the selected model and the combination of hyperparameters would the one that best generalizes the whole dataset and to new examples.</p>
 
 </div>
 </div>
@@ -13955,11 +13961,10 @@ Predicted selling price for Client 3&#39;s home: $931,636.36
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Answer: 
-Predicted selling price for Client 1's home: $403,025.00
-Predicted selling price for Client 2's home: $237,478.72
-Predicted selling price for Client 3's home: $931,636.36</p>
-<p>The prices can be recommended to the clients as the predictions account for the respective features of the houses and also seem statistically plausible in relation to the mean and median of the prices in the dataset.</p>
+<p>Answer:
+The above predicted prices can be recommended to the clients as the predictions account for the respective features of the houses and also seem statistically plausible in relation to the mean and median of the prices in the dataset.</p>
+<p>When the individual features are plotted against MEDV, the clients (as datapoints), represent the inverse relation between LSTAT, PTRATIO and price of the house as well as the direct relation between RM and the price. And so it is justifed that for example client 3 has a house in the higher range because the house has 8 rooms and is in a neighbourhood where LSTAT is as low as 3 percent and PTRATIO is as low as 12-1. The high number of rooms and low LSTAT, and PTRATIO make good explanations for that high a price for the house.
+Similarly for the other clients too.</p>
 
 </div>
 </div>
