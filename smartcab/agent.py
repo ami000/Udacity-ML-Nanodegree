@@ -23,7 +23,7 @@ class LearningAgent(Agent):
         ## TO DO ##
         ###########
         # Set any additional class parameters as needed
-        self.t=0.0
+        self.trial=0.0
         random.seed(1300)
 
 
@@ -47,11 +47,11 @@ class LearningAgent(Agent):
             self.alpha=0.0
         else:
             #self.epsilon=self.epsilon-0.05
-            self.t += 1.0
-            #self.epsilon = self.alpha**self.t
-            #self.epsilon = 1.0/(self.t**2)
-            #self.epsilon = math.exp(-(self.alpha*self.t))
-            self.epsilon = math.fabs(math.cos(self.alpha*self.t))
+            self.trial += 1.0
+            #self.epsilon = self.alpha**self.trial
+            #self.epsilon = 1.0/(self.trial**2)
+            #self.epsilon = math.exp(-(self.alpha*self.trial))
+            self.epsilon = math.fabs(math.cos(self.alpha*self.trial))
 
 
         return None
